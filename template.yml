@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Transcription services with AWS Lambda Web Adapter and SQS integration
+
+# TODO: change role and sqs to proper values
+Resources:
+  MediaValidationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: media-validation-service-dev
+      PackageType: Image
+      Role: arn:aws:iam::617768147523:role/audio-extraction-lambda-execution-dev
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          AWS_LWA_READINESS_CHECK_PROTOCOL: tcp
+          RUST_LOG: info
+      Events:
+        SqsEvent:
+          Type: SQS
+          Properties:
+            Queue: arn:aws:sqs:eu-west-2:617768147523:audio-extraction-video-processing-dev
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./media-validation-service

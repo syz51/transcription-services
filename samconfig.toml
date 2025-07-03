@@ -1,0 +1,12 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "transcription-services"
+resolve_s3 = true
+s3_prefix = "transcription-services"
+region = "eu-west-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = [
+    "MediaValidationFunction=617768147523.dkr.ecr.eu-west-2.amazonaws.com/transcriptionservices3e704eb0/mediavalidationfunctiondfe0e9barepo",
+]

@@ -3,6 +3,7 @@ module github.com/syz51/media-validation-service
 go 1.24.4
 
 require (
+	github.com/aws/aws-lambda-go v1.49.0
 	github.com/labstack/echo/v4 v4.13.4
 	github.com/spf13/viper v1.20.1
 )
